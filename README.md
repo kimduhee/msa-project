@@ -12,3 +12,6 @@
 + Prometheus(2.53.4)
 ### Application Framework
 + Spring Boot(3.4.4)
+### Database
++ MariaDB
++ Mybatis
