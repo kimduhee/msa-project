@@ -99,4 +99,13 @@ scrape_configs:
 
 
 # Grafana
-+ 개요
++ 오픈 소스 시각화 도구로, 다양한 데이터 소스에서 데이터를 수집하고 이를 차트, 그래프, 알림 대시보드로 시각화해 주는 도구
+  
+### Download
+<pre><code>https://grafana.com/grafana/download?platform=windows</code></pre>
+zip 파일 원하는 폴더(C:/project/tool/grafana)에 다운로드 및 압축 해제
+
+### 실행
++ C:/project/tool/grafana/bin 로 이동하여 grafana-server.exe 실행
++ http://localhost:3000/login 접속 admin/admin으로 로그인
+
