@@ -115,8 +115,8 @@ zip 파일 원하는 폴더(C:/project/tool/grafana)에 다운로드 및 압축 
 # Zipkin
 + 분산 환경에서 로그 트레이싱하는 오픈소스로 트위터에서 개발
 
-### Download 및 실행
-+ 아래 접속하여 quickStart의 설치 가이드에 따라 설
+### Download 및 설치
++ 아래 접속하여 quickStart의 설치 가이드에 따라 진행
 <pre><code>https://zipkin.io/</code></pre>
 
 ### 실행
@@ -147,3 +147,13 @@ implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
 + logback-spring.xml
 <br>(파일의 로그 패턴에 아래 내용 추가)  
 <pre><code>%replace([%X{traceId}, %X{spanId}])</code></pre>
+
++ Application.java(Webflux 사용시)
++ Reactor 연산자가 실행되는 동안 컨텍스트를 자동으로 전파하도록 아래 내용 추가
+<br>(관련 내용 참조 : https://spring.io/blog/2023/03/30/context-propagation-with-project-reactor-3-unified-bridging-between-reactive)
+<pre><code>public static void main(String[] args) {
+  SpringApplication.run(Application.class, args);
+  //Zipkin trace ID를 위해
+  //ThreadLocal에 대해 전역적인 자동 Context 전파가 가능하도록 함
+  Hooks.enableAutomaticContextPropagation();
+}</code></pre>
