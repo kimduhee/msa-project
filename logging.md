@@ -3,6 +3,7 @@
 + Protail(3.4.3)
 + Grafana(9.0.5)
 + Prometheus(2.53.4)
++ Zipkin(3.5.0)
 <br>
 
 
@@ -108,4 +109,41 @@ zip 파일 원하는 폴더(C:/project/tool/grafana)에 다운로드 및 압축 
 ### 실행
 + C:/project/tool/grafana/bin 로 이동하여 grafana-server.exe 실행
 + http://localhost:3000/login 접속 admin/admin으로 로그인
+<br>
 
+
+# Zipkin
++ 분산 환경에서 로그 트레이싱하는 오픈소스로 트위터에서 개발
+
+### Download 및 실행
++ 아래 접속하여 quickStart의 설치 가이드에 따라 설
+<pre><code>https://zipkin.io/</code></pre>
+
+### 실행
+<pre><code>java -jar zipkin.jar</code></pre>
+
+### 적용
++ Gradle
+<br>(spring boot 3.X 대 이면 micrometer-tracing-bridge-brave 을 사용)
+<pre><code>//traceId, spanId 정보제공
+implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
+
+//spring boot 3.X에서는 사용 못함
+//implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'</code></pre>
+
++ application.yml
+<pre><code>management:
+  tracing:
+    sampling:
+      probability: 1.0
+    propagation:
+      consume: b3
+      produce: b3_multi
+  zipkin:
+    tracing:
+      endpoint: "http://localhost:9411/api/v2/spans"</code></pre>
+      
++ logback-spring.xml
+<br>(파일의 로그 패턴에 아래 내용 추가)  
+<pre><code>%replace([%X{traceId}, %X{spanId}])</code></pre>
