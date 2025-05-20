@@ -16,4 +16,4 @@
 + Mybatis
 ### 컨테이너
 + Docker(4.41.2)
-+ Kubernetes(1.19.3)
++ Kubernetes(1.32.2)
