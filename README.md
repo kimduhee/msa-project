@@ -1,7 +1,6 @@
-# 개발환경
+# 개발환경(memory 8G 도전!)
 + JDK 17(17.0.14)
 + IDE IntelliJ IDEA 2024.3.5 (Community Edition)
-+ memory 8G >.<
 - - -
 # Open source
 ### Logging
@@ -15,3 +14,6 @@
 ### Database
 + MariaDB
 + Mybatis
+### 컨테이너
++ Docker(3.0.0)
++ Kubernetes(1.19.3)
