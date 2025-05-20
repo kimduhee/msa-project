@@ -15,5 +15,5 @@
 + MariaDB
 + Mybatis
 ### 컨테이너
-+ Docker(3.0.0)
++ Docker(4.41.2)
 + Kubernetes(1.19.3)
